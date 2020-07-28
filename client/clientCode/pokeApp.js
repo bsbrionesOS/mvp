@@ -39,12 +39,7 @@ firstSearch() {
     return (
       <div>
         <h1>Pokemon, Team builder!</h1>
-        <div className='Pokeinfo'>
           <PokeView pokemon={this.state.currentPokemon}/>
-        </div>
-     
-    
-
       </div>
     ); 
   } 

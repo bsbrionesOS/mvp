@@ -16,9 +16,23 @@ class PokeView extends Component {
       )
     } else{
       return (
+        <div className='PokeInfo'>
         <div className='sprite'>
           <img src={pokemon.sprites.front_default} />
         </div>
+      <div className='id'>{pokemon.id}</div>
+      <div className='name'>{pokemon.name}</div>
+      <div className='types'>{pokemon.types.map(type => {
+        return <div>{type.type.name}</div>
+      })}</div>
+      <div className='moves'>
+        <div className='move'>{pokemon.moves[0].move.name}</div>
+        <div className='move'>{pokemon.moves[1].move.name}</div>
+        <div className='move'>{pokemon.moves[2].move.name}</div>
+        <div className='move'>{pokemon.moves[3].move.name}</div>
+      </div>
+        </div>
+        
       );
 
     }
