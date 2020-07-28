@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import HelloWorld from './helloworld';
+import PokeApp from './pokeApp';
+import { pokeUrl } from './pokemonApi/pokemonApi';
+import {getPokemon} from './services';
 
-render(<HelloWorld />, document.getElementById('app-root'));
+render(<PokeApp getPokemon={getPokemon}/>, document.getElementById('app-root'));
