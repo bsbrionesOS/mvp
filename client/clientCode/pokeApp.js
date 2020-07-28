@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokeView from './pokeView'
+import PokeTeamView from './teamView'
 
 
 class PokeApp extends Component {
@@ -7,10 +8,12 @@ constructor(props) {
   super(props); 
   this.state = {
     currentPokemon: {},
-    name: ''
+    name: '',
+    team: []
   }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.addToTeam = this.addToTeam.bind(this);
 }
 
 ///// during first render of pokeApp i would want a pokemon already up///
@@ -48,7 +51,18 @@ handleSubmit(event) {
 })
 
 }
-
+///////////////making an add to team handle click event/////
+addToTeam() {
+  if(this.state.team.length === 0) {
+    this.setState({
+      team: [this.state.currentPokemon]
+    })
+  } else {
+    this.setState({
+      team: [...this.state.team, this.state.currentPokemon]
+    })
+  }
+}
 
   render() {
     console.log(this.state.currentPokemon)
@@ -66,6 +80,12 @@ handleSubmit(event) {
             </form>
           </div>
           <PokeView pokemon={this.state.currentPokemon}/>
+          <div className='button'>
+            <button onClick={this.addToTeam}>Add Pokemon</button>
+          </div>
+          <div className='Team'>
+            <PokeTeamView team={this.state.team}/>
+          </div>
       </div>
     ); 
   } 
