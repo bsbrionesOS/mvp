@@ -35,6 +35,12 @@ firstSearch() {
     currentPokemon: pokeData
   })
 })
+// axios.get(`http://localhost:3000/pokemon/pikachu`,{headers: {'Content-Type': 'application/json'}})
+//   .then(response => {
+//     console.log(response, 'coming from axios get')
+//   }, err => {
+//     console.log(err, 'error coming from axios get')
+//   })
 }
 ///// creating a search function////
 handleChange(event) {
@@ -56,7 +62,7 @@ handleSubmit(event) {
 
   axios.get('http://localhost:3000/pokemon, {
     name: this.state.name
-  })
+  }, headers: {'Content-Type': 'application/json'})
   .then(response => {
     console.log(response)
   }, err => {
@@ -64,6 +70,7 @@ handleSubmit(event) {
   })
   */
   event.preventDefault()
+  //////working code below//////////
   const {getPokemon} = this.props
 
   return getPokemon(this.state.name)
@@ -79,11 +86,12 @@ handleSubmit(event) {
 addToTeam() {
 
   /*
-  axios.post('http://localhost:3000/pokemon', { data: this.state.currentPokemon})
+  axios.post('http://localhost:3000/pokemon', { data: this.state.currentPokemon}, headers: {'Content-Type': 'application/json'})
   .then(res => {
     console.log(res)
   })
   */
+ /////////////working code below//////////////
   if(this.state.team.length === 0) {
     this.setState({
       team: [this.state.currentPokemon]
@@ -100,11 +108,12 @@ console.log('click')
 /*
 axios.delete('http://localhost:3000/pokemon', {
   data: this.state.currentPokemon
-})
+}, headers: {'Content-Type': 'application/json'})
 .then(res => {
   console.log(res)
 })
 */
+////////////working code below//////////////
 const pokemon = this.state.team.find(poke => poke.id === this.state.currentPokemon.id)
 const newA = [...this.state.team]
 if(pokemon) {
