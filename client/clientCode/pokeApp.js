@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PokeView from './pokeView'
 import PokeTeamView from './teamView'
+import axios from 'axios'
 
 
 
@@ -43,6 +44,25 @@ handleChange(event) {
 }
 
 handleSubmit(event) {
+  ////will send the get request to server/// endpoint /pokemon
+  /*
+  axios({
+    method: 'get',
+    url: localhost:3000/pokemon,
+    data: {
+      name: this.state.name
+    }
+  })
+
+  axios.get('http://localhost:3000/pokemon, {
+    name: this.state.name
+  })
+  .then(response => {
+    console.log(response)
+  }, err => {
+    console.log(err)
+  })
+  */
   event.preventDefault()
   const {getPokemon} = this.props
 
@@ -54,8 +74,16 @@ handleSubmit(event) {
 })
 
 }
-///////////////making an add to team handle click event/////
+///////////////making an add to team handle click event///////////
+///////////////Handle click will sent a create request to db//////
 addToTeam() {
+
+  /*
+  axios.post('http://localhost:3000/pokemon', { data: this.state.currentPokemon})
+  .then(res => {
+    console.log(res)
+  })
+  */
   if(this.state.team.length === 0) {
     this.setState({
       team: [this.state.currentPokemon]
@@ -66,9 +94,17 @@ addToTeam() {
     })
   }
 }
-
+////////////////Delete from db//////////////////
 remove() {
 console.log('click')
+/*
+axios.delete('http://localhost:3000/pokemon', {
+  data: this.state.currentPokemon
+})
+.then(res => {
+  console.log(res)
+})
+*/
 const pokemon = this.state.team.find(poke => poke.id === this.state.currentPokemon.id)
 const newA = [...this.state.team]
 if(pokemon) {

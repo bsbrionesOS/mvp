@@ -1,6 +1,7 @@
-import { pokeUrl } from './pokemonApi/pokemonApi'
-
-export function getPokemon (name) {
+const { pokeUrl } = require('./pokemonApi/pokemonApi')
+//// i can make the api request here///////
+///////////////axios read?//////////////////////
+const getPokemon = function (name) {
   return new Promise ((resolve, reject) => {
     fetch(`${pokeUrl}/${name}`)
     .then(res => res.json())
@@ -8,3 +9,4 @@ export function getPokemon (name) {
   })
 }
 
+module.exports.getPokemon = getPokemon
