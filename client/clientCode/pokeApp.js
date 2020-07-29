@@ -3,6 +3,7 @@ import PokeView from './pokeView'
 import PokeTeamView from './teamView'
 
 
+
 class PokeApp extends Component {
 constructor(props) {
   super(props); 
@@ -14,6 +15,8 @@ constructor(props) {
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.addToTeam = this.addToTeam.bind(this);
+  this.remove = this.remove.bind(this)
+ 
 }
 
 ///// during first render of pokeApp i would want a pokemon already up///
@@ -64,6 +67,23 @@ addToTeam() {
   }
 }
 
+remove() {
+console.log('click')
+const pokemon = this.state.team.find(poke => poke.id === this.state.currentPokemon.id)
+const newA = [...this.state.team]
+if(pokemon) {
+  const index = this.state.team.indexOf(pokemon)
+  
+  newA.splice(index,1)
+  this.setState({
+    team: newA
+  })
+  console.log('complete')
+}
+}
+
+    
+
   render() {
     console.log(this.state.currentPokemon)
     
@@ -80,8 +100,11 @@ addToTeam() {
             </form>
           </div>
           <PokeView pokemon={this.state.currentPokemon}/>
-          <div className='button'>
+          <div className='addbutton'>
             <button onClick={this.addToTeam}>Add Pokemon</button>
+          </div>
+          <div className='remove'>
+            <button onClick={this.remove}>Remove Pokemon</button> 
           </div>
           <div className='Team'>
             <PokeTeamView team={this.state.team}/>
